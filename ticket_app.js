@@ -14,9 +14,10 @@ app.get('/', (req, res, next)=>
 });
 
 const eventRoutes = require('./src/routes/ticket_event.routes');
-// const ticketRoutes = require('./src/routes')
-
 app.use('/api/v1/event/', eventRoutes);
+
+const ticketRoutes = require('./src/routes/ticket_location.routes');
+app.use('/api/v1/location/', ticketRoutes);
 
 app.listen(port, () => {
 	console.log("Server is running at port "+ port)

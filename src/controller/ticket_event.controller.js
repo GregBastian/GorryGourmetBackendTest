@@ -1,5 +1,3 @@
-// Create Event	/event/create	POST	Endpoint to create new event
-
 const TicketEventModel = require('../models/ticket_event.model');
 
 exports.createEvent = (req, res) => {
@@ -20,10 +18,10 @@ exports.createTicketForEvent = (req, res) =>{
 }
 
 exports.getEventInfo = (req, res) => {
-	console.log("Getting event data for event with id : ", req.body);
+	console.log("Getting event data for event with id : ", req.body.id);
 	TicketEventModel.getEventById(req.body.id, (err, eventInfo)=>{
 		if (err) res.send(err);
-		res.json({status: true, message: "data fetch successful", data: eventInfo})
+		res.json({status: true, message: "data fetch successful", data: req.body})
 	})
 }
 

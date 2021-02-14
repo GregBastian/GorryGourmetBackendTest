@@ -1,25 +1,26 @@
 const dbConn = require('../config/db.config')
 
-var TicketEvent = function(ticketEvent){
-    this.event_name     =   ticketEvent.event_name;
-    this.location       =   ticketEvent.location;
-    this.date_begin     =   new Date(ticketEvent.date_begin);
-    this.date_end       =   new Date(ticketEvent.date_end);
+var TicketForEventModel = function(ticketForEvent){
+    this.event_id       =   ticketForEvent.event_id;
+    this.event_name     =   ticketForEvent.event_name;
+    this.ticket_type    =   ticketForEvent.ticket_type;
+    this.ticket_quota   =   ticketForEvent.ticket_quota;
 }
 
-TicketEvent.createTicket = (newTicketForEventData, result) =>{
-    dbConn.query('INSERT INTO ticket_event SET ? ', newTicketForEventData, (err, res)=>{
+TicketForEventModel.createTicket = (newTicketForEventData, result) =>{
+    dbConn.query('INSERT INTO ticket_for_event SET ? ', newTicketForEventData, (err, res)=>{
         if(err){
             console.log('Error while inserting data');
             result(null, err);
         }else{
-            console.log('New event created successfully');
+            console.log(`New Ticket ${newTickerForEventData.ticket_type} with quota of 
+                ${newTicketForEventData.ticket_quota} for event_id ${newTicketForEventData.event_id} created successfully`);
             result(null, res);
         }
     })
 }
 
-TicketEvent.getEventByID = (id, result)=>{
+TicketForEventModel.getEventByID = (id, result)=>{
     dbConn.query('SELECT * FROM ticket_event WHERE _id=?', id, (err, res)=>{
         if(err){
             console.log('Error while fetching event by id', err);
@@ -31,7 +32,7 @@ TicketEvent.getEventByID = (id, result)=>{
     })
 }
 
-TicketEvent.createEvent = (eventNewData, result) =>{
+TicketForEventModel.createEvent = (eventNewData, result) =>{
     dbConn.query('INSERT INTO ticket_event SET ? ', employeeReqData, (err, res)=>{
         if(err){
             console.log('Error while inserting data');
@@ -42,3 +43,5 @@ TicketEvent.createEvent = (eventNewData, result) =>{
         }
     })
 }
+
+module.exports = TicketForEventModel;

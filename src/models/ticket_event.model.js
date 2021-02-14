@@ -7,10 +7,17 @@ var TicketEventModel = function(ticketEventModel){
     this.date_end       =   new Date(ticketEventModel.date_end);
 }
 
-let TicketForEventModel = function(ticketForEventModel){
-    this.event_id = ticketForEventModel.event_id;
-    this.event_name = ticketForEventModel.event_name;
-    this
+
+TicketEventModel.getEventById = (id, result) =>{
+    dbConn.query('SELECT * FROM ticket_event WHERE _id=?', id, (err, res)=>{
+        if(err){
+            console.log('Error while fetching event by id', err);
+            result(null, err);
+        }else{
+        	console.log(`Event with id ${id} successfully retrieved`);
+            result(null, res);
+        }
+    })
 }
 
 TicketEventModel.getAllEvents = (result) =>{
@@ -25,17 +32,7 @@ TicketEventModel.getAllEvents = (result) =>{
     })
 }
 
-TicketEventModel.getEventById = (id, result) =>{
-    dbConn.query('SELECT * FROM ticket_event WHERE _id=?', id, (err, res)=>{
-        if(err){
-            console.log('Error while fetching event by id', err);
-            result(null, err);
-        }else{
-        	console.log(`Event with id ${id} successfully retrieved`);
-            result(null, res);
-        }
-    })
-}
+
 
 TicketEventModel.createEvent = (eventNewData, result) =>{
     dbConn.query('INSERT INTO ticket_event SET ? ', eventNewData, (err, res)=>{
