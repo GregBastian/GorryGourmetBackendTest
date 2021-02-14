@@ -1,49 +1,51 @@
 const dbConn = require('../config/db.config')
 
-var TransactionEventModel = function(transactionEvent){
-    this.nomorHp        =   transactionEvent.nomorHp;
+var TransactionEventModel = function(transactionId,transactionEvent, ticketInfo){
+    this.transaction_id =   transactionId;
+    this.phone_number   =   transactionEvent.phone_number;
     this.event_id       =   transactionEvent.event_id;
     this.event_name     =   transactionEvent.event_name;
-    this.ticket_id      =   transactionEvent.ticket_id;
-    this.ticket_type    =   transactionEvent.ticket_type;
-    this.ticket_amount  =   transactionEvent.ticket_amount;
+    this.ticket_id      =   ticketInfo.ticket_id;
+    this.ticket_type    =   ticketInfo.ticket_type;
+    this.ticket_amount  =   ticketInfo.ticket_amount;
 }
 
-TransactionEventModel.createTransaction = (newTicketForEventData, result) =>{
-    dbConn.query('INSERT INTO ticket_for_event SET ? ', newTicketForEventData, (err, res)=>{
+
+TransactionEventModel.createTransaction = (newTransactionData, result) =>{
+    dbConn.query('INSERT INTO ticket_transaction SET ? ', newTransactionData, (err, res)=>{
         if(err){
-            console.log('Error while inserting data');
+            console.log('Error while inserting new ticket transactions :', err);
             result(null, err);
         }else{
-            console.log(`New Ticket ${newTicketForEventData.ticket_type} with quota of 
-                ${newTicketForEventData.ticket_quota} for event_id ${newTicketForEventData.event_id} created successfully`);
+            console.log(`Transaction for ${newTransactionData.ticket_type} with amount of ${newTransactionData.ticket_amount} 
+                for event_id ${newTransactionData.event_id} created successfully`);
             result(null, res);
         }
     })
 }
 
-TransactionEventModel.getEventByID = (id, result)=>{
-    dbConn.query('SELECT * FROM ticket_event WHERE _id=?', id, (err, res)=>{
-        if(err){
-            console.log('Error while fetching event by id', err);
-            result(null, err);
-        }else{
-        	console.log(`Event with id ${id} successfully retrieved`);
-            result(null, res);
-        }
-    })
-}
+// TransactionEventModel.getEventByID = (id, result)=>{
+//     dbConn.query('SELECT * FROM ticket_event WHERE _id=?', id, (err, res)=>{
+//         if(err){
+//             console.log('Error while fetching event by id', err);
+//             result(null, err);
+//         }else{
+//         	console.log(`Event with id ${id} successfully retrieved`);
+//             result(null, res);
+//         }
+//     })
+// }
 
-TransactionEventModel.createEvent = (eventNewData, result) =>{
-    dbConn.query('INSERT INTO ticket_event SET ? ', employeeReqData, (err, res)=>{
-        if(err){
-            console.log('Error while inserting data');
-            result(null, err);
-        }else{
-            console.log('New event created successfully');
-            result(null, res)
-        }
-    })
-}
+// TransactionEventModel.createEvent = (eventNewData, result) =>{
+//     dbConn.query('INSERT INTO ticket_event SET ? ', employeeReqData, (err, res)=>{
+//         if(err){
+//             console.log('Error while inserting data');
+//             result(null, err);
+//         }else{
+//             console.log('New event created successfully');
+//             result(null, res)
+//         }
+//     })
+// }
 
 module.exports = TransactionEventModel;

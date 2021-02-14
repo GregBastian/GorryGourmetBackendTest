@@ -15,7 +15,4 @@ exports.createTicket = (req, res) =>{
 	}
 }
 
-exports.getTicketById = (req, res) => {
-
-
-}
+exports.decrementTicketAmount = (req, res) => {}

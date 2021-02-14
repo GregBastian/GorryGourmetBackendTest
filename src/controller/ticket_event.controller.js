@@ -1,4 +1,4 @@
-const TicketEventModel = require('../models/transaction_event.model');
+const TicketEventModel = require('../models/ticket_transaction.model');
 
 exports.createEvent = (req, res) => {
 	const newPurchaseData = new TicketEventModel(req.body);
