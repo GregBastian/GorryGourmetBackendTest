@@ -1,6 +1,6 @@
 const TicketForEventModel = require('../models/ticket_for_event.model');
 
-exports.CreateTicket = (req, res) =>{
+exports.createTicket = (req, res) =>{
 const newEventData = new TicketForEventModel(req.body)
 	console.log("Creating new event", newTicketData);
 	if(req.body.constructor === Object && Object.keys(req.body).length === 0){
