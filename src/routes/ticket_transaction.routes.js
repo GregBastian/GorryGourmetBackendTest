@@ -8,6 +8,6 @@ const transactionController = require('../controller/ticket_transaction.controll
 router.post('/purchase', transactionController.purchaseTicket);
 
 // endpoint to get purchase information for a certain transaction id
-router.get('/get_info', transactionController.getInfo)
+router.get('/get_info', transactionController.getInfo);
 
 module.exports = router;

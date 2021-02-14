@@ -1,4 +1,4 @@
-const TicketEventModel = require('../models/ticket_transaction.model');
+const TicketEventModel = require('../models/ticket_event.model');
 
 exports.createEvent = (req, res) => {
 	const newPurchaseData = new TicketEventModel(req.body);
@@ -17,7 +17,7 @@ exports.getEventInfo = (req, res) => {
 	console.log("Getting event data for event with id : ", req.body.id);
 	TicketEventModel.getEventById(req.body.id, (err, eventInfo)=>{
 		if (err) res.send(err);
-		res.json({status: true, message: "data fetch successful", data: req.body})
+		res.json({status: true, message: "data fetch successful", data: eventInfo})
 	})
 }
 

@@ -31,6 +31,12 @@ TicketForEventModel.getTicketAmountById = (ticketId, result) => {
     })
 }
 
+// UPDATE ticket_for_event
+// SET final_price= CASE
+//    WHEN currency=1 THEN 0.81*final_price
+//    ELSE final_price
+// END
+
 TicketForEventModel.decrementTicketAmount = (ticketId, amountOfPurchase, result) => {
     dbConn.query('UPDATE ticket_for_event SET ticket_quota = ticket_quota - ? WHERE _id= ? AND ticket_quota - ? >= 0', [amountOfPurchase, ticketId, amountOfPurchase], (err, res)=>{
         if(err){
