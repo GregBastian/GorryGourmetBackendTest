@@ -9,8 +9,8 @@ const ticketForEventController = require('../controller/ticket_for_event.control
 // Endpoint to create a new specific event
 router.post('/create', eventController.createEvent);
 
-//
-router.post('ticket/create', ticketForEventController.createTicket)
+// Endpoint to create a ticket for an event
+router.post('/ticket/create', ticketForEventController.createTicket)
 
 // Endpoint to retrieve event information, including location data and ticket data [ticket data = WIP]
 router.get('/get_info', eventController.getEventInfo);

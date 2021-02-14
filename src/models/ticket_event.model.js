@@ -50,5 +50,4 @@ TicketEventModel.addTicketForEvent = (eventData, result)=>{
 
 }
 
-
 module.exports = TicketEventModel;
