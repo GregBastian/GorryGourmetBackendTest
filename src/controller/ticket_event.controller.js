@@ -6,9 +6,9 @@ exports.createEvent = (req, res) => {
 	if(req.body.constructor === Object && Object.keys(req.body).length === 0){
 		res.send(400).send({success: false, message: 'Please fill all fields'});
 	}else{
-		TicketEventModel.createTransaction(newPurchaseData, (err, eventInfo)=>{
+		TicketEventModel.createEvent(newPurchaseData, (err, eventInfo)=>{
 			if(err) res.send(err);
-			res.json({status: true, message: 'Ticket purchased Successfully', data: req.body})
+			res.json({status: true, message: 'Event created Successfully', data: req.body})
 		})
 	}
 }

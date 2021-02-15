@@ -19,7 +19,8 @@ TicketForEventModel.createTicket = (newTicketForEventData, result) =>{
     })
 }
 
-TicketForEventModel.getTicketAmountById = (ticketId, result) => {
+TicketForEventModel.getTicketAmountById = (ticketId, transactionCancel, result) => {
+    transactionCancel.status = true;
     dbConn.query('SELECT * FROM ticket_for_event WHERE _id = ?', ticketId, (err, res) =>{
         if(err){
             console.log('Error while looking ticket for event data : ', err);
@@ -31,14 +32,9 @@ TicketForEventModel.getTicketAmountById = (ticketId, result) => {
     })
 }
 
-// UPDATE ticket_for_event
-// SET final_price= CASE
-//    WHEN currency=1 THEN 0.81*final_price
-//    ELSE final_price
-// END
 
 TicketForEventModel.decrementTicketAmount = (ticketId, amountOfPurchase, result) => {
-    dbConn.query('UPDATE ticket_for_event SET ticket_quota = ticket_quota - ? WHERE _id= ? AND ticket_quota - ? >= 0', [amountOfPurchase, ticketId, amountOfPurchase], (err, res)=>{
+    dbConn.query('UPDATE ticket_for_event SET ticket_quota = ticket_quota - ? WHERE _id= ?', [amountOfPurchase, ticketId], (err, res)=>{
         if(err){
             console.log('Error while inserting data : ', err);
             result(null, err);

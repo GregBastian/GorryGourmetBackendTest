@@ -37,12 +37,12 @@ TransactionEventModel.getEventByID = (id, result)=>{
 }
 
 TransactionEventModel.getTransactionsbyTransactionId = (transaction_id, result) =>{
-    dbConn.query('INSERT INTO ticket_event SET ? ', employeeReqData, (err, res)=>{
+    dbConn.query('SELECT * FROM ticket_transaction WHERE transaction_id=?', transaction_id, (err, res)=>{
         if(err){
-            console.log('Error while inserting data');
+            console.log('Error while fetching data');
             result(null, err);
         }else{
-            console.log('New event created successfully');
+            console.log('Transaction data fetch succesfull');
             result(null, res)
         }
     })

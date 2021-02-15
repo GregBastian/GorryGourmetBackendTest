@@ -1,0 +1,202 @@
+{
+	"info": {
+		"_postman_id": "b8d40292-8089-4868-aecc-075cf5a757f2",
+		"name": "Gorry Gourmet Ticket App",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Event Info",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"31a2b1ee-6e23-11eb-9f84-94e6f76c795a\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/event/get_info",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"event",
+						"get_info"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Event",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"event_name\": \"SWP\",\r\n    \"location\": \"Semarang\",\r\n    \"date_begin\": \"2016/1/1\",\r\n    \"date_end\": \"2016/2/1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/event/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"event",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Location",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"event_id\": \"31a2b1ee-6e23-11eb-9f84-94e6f76c795a\",\r\n    \"location\": \"Semarang\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/location/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"location",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Ticket for Event",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"event_id\": \"31a2b1ee-6e23-11eb-9f84-94e6f76c795a\",\r\n    \"event_name\": \"SWP\",\r\n    \"tickets\": [\r\n        {\"ticket_type\": \"Diamond\",\"ticket_quota\": 10},\r\n        {\"ticket_type\": \"Gold\", \"ticket_quota\": 20}\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/event/ticket/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"event",
+						"ticket",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Ticket Transaction",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"phone_number\": \"082122003300\",\r\n    \"event_id\": \"31a2b1ee-6e23-11eb-9f84-94e6f76c795a\",\r\n    \"event_name\": \"SWP\",\r\n    \"purchases\": [\r\n        {\"ticket_id\": \"93e38c63-6ecf-11eb-9f84-94e6f76c795a\", \"ticket_type\": \"Diamond\",\"ticket_amount\": 2},\r\n        {\"ticket_id\": \"93e46aff-6ecf-11eb-9f84-94e6f76c795a\", \"ticket_type\": \"Gold\", \"ticket_amount\": 1}\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/transaction/purchase",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"transaction",
+						"purchase"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Transactions",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"transaction_id\": \"4ed6b07a-0209-4bbf-b13d-a65854d0445a\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/transaction/get_info",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"transaction",
+						"get_info"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
